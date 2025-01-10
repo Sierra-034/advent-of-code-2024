@@ -2,17 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='advent_of_code',
-    version='0.1',
+    version='0.1.0',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
+    include_package_data=True,
     install_requires=[
         'pytest',
     ],
-    entry_points={
-        'console_scripts': [
-            # Add command line scripts here
-        ],
-    },
     author='Samuel Gómez',
     author_email='samuel.gomez.balderas@gmail.com',
     description='A project for Advent of Code',
