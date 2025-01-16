@@ -14,7 +14,7 @@ def get_frequency_dict(left_list: list, right_list: list) -> dict:
         
     return frequency_dict
 
-def get_similarity_socore(frequency_dict: dict, left_list: list) -> int:
+def get_similarity_score(frequency_dict: dict, left_list: list) -> int:
     scores = list()
     for left_element in left_list:
         scores.append(left_element * frequency_dict[left_element])
@@ -24,5 +24,5 @@ def get_similarity_socore(frequency_dict: dict, left_list: list) -> int:
 if __name__ == '__main__':
     left_list, right_list = prepare_day01_input_data()
     frequency_dict = get_frequency_dict(left_list, right_list)
-    similarity_score = get_similarity_socore(frequency_dict, left_list)
+    similarity_score = get_similarity_score(frequency_dict, left_list)
     print(similarity_score)
