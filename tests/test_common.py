@@ -32,13 +32,13 @@ def test_read_stdin_lines_single_line(monkeypatch):
     assert result == expected_lines
 
 def test_prepare_day01_input_data(monkeypatch):
-    input_data = "1 2\n3  4\n5\t6\n"
+    input_data = "3 4\n4  3\n2\t5\n1 3\n3  9\n3 3\n"
     monkeypatch.setattr('sys.stdin', StringIO(input_data))
     
     left_list, right_list = prepare_day01_input_data()
     
-    assert left_list == [1, 3, 5]
-    assert right_list == [2, 4, 6]
+    assert left_list == [1, 2, 3, 4, 3, 3]
+    assert right_list == [3, 3, 3, 4, 9, 5]
 
 def test_prepare_day01_input_data_empty(monkeypatch):
     input_data = ""
