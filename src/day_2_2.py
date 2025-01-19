@@ -1,5 +1,12 @@
 from common import prepare_day02_input_data
-from day_2_1 import check_all_increasing_safe, check_all_decreasing_safe
+from day_2_1 import IncreasingSafeChecker, DecreasingSafeChecker, ReportChecker, \
+    check_all_increasing_safe, check_all_decreasing_safe, red_nosed_reports
+
+class RemovingChecker(ReportChecker):
+    def check(self, report):
+        if check_if_removing(report):
+            return True
+        return super().check(report)
 
 def check_if_removing(report: list):
     aux_report = report.copy()
