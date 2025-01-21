@@ -1,3 +1,4 @@
+from heapq import heappush
 
 def read_stdin_lines():
     try:
@@ -14,8 +15,8 @@ def prepare_day01_input_data():
 
     for line in read_stdin_lines():
         left, right = line.split()
-        left_list.append(int(left))
-        right_list.append(int(right))
+        heappush(left_list, int(left))
+        heappush(right_list, int(right))
     
     return left_list, right_list
 
