@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ### 4. Run the Magic  
 Navigate to `src/` and run the solution for any day:
 ```bash
-python dayX.py
+python day_X_Y.py
 ```
 Replace `X` with the day number and `Y` with the part of the problem (e.g.,  `day_2_1.py` for day 2, part 1) as each problem is divided in two parts.
 
