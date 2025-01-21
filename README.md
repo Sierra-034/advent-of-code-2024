@@ -26,7 +26,7 @@ Make sure you have all the tools you need. This will not only install this as a 
 ```bash
 pip install -r requirements.txt
 ```
-4. Run the Magic  
+### 4. Run the Magic  
 Navigate to `src/` and run the solution for any day:
 ```bash
 python day_X_Y.py
