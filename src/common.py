@@ -27,3 +27,9 @@ def prepare_day02_input_data():
         report_list.append(report)
     
     return report_list
+
+def prepare_day03_input_data():
+    lines = list()
+    for line in read_stdin_lines():
+        lines.append(line)
+    return lines
