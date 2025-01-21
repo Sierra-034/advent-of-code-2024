@@ -1,4 +1,5 @@
 from re import finditer
+from common import prepare_day03_input_data
 
 def get_matches(line: str) -> list:
     matches = list()
@@ -24,7 +25,8 @@ def mull_it_over(lines: list) -> int:
     return product_sum
 
 def main():
-    pass
+    lines = prepare_day03_input_data()
+    print(mull_it_over(lines))
 
 if __name__ == "__main__":
-    pass
+    main()
