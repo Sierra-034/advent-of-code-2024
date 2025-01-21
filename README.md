@@ -32,7 +32,7 @@ Navigate to `src/` and run the solution for any day:
 ```bash
 python dayX.py
 ```
-Replace `X` with the day number (e.g., `day1.py` for Day 1).  
+Replace `X` with the day number and `Y` with the part of the problem (e.g.,  `day_2_1.py` for day 2, part 1) as each problem is divided in two parts.
 
 ## 🧪 Testing the Magic
 
