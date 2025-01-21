@@ -21,11 +21,10 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Install Dependencies  
-Make sure you have all the tools you need:
+### 3. Install Package as editable  
+Make sure you have all the tools you need. This will not only install this as a package but also will install pytest  dependency. At your project's root run:
 ```bash
-pip install -r requirements.txt
-```
+pip install -e .
 
 ### 4. Run the Magic  
 Navigate to `src/` and run the solution for any day:
