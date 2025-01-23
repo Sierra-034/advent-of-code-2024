@@ -1,6 +1,11 @@
 import pytest
-from day_2_1 import report_iterator, check_all_increasing_safe, check_all_decreasing_safe, \
+from day_2_1 import IncreasingSafeChecker, DecreasingSafeChecker, report_iterator, \
     red_nosed_reports
+
+
+@pytest.fixture
+def get_safe_checker():
+    return IncreasingSafeChecker(DecreasingSafeChecker())
 
 def test_report_iterator():
     report_list = [1, 2, 3, 4, 5]
@@ -13,35 +18,40 @@ def test_report_iterator():
     with pytest.raises(StopIteration):
         next(iterator)
 
-def test_check_all_increasing_safe():
-    assert check_all_increasing_safe([1, 2, 3, 5]) == True
-    assert check_all_increasing_safe([1, 2, 3, 3]) == False
-    assert check_all_increasing_safe([1, 2, 3, 6]) == True
-    assert check_all_increasing_safe([1, 2, 3, 7]) == False
+def test_increasing_safe_checker_class():
+    increasing_checker = IncreasingSafeChecker()
+    assert increasing_checker.check([1, 2, 3, 5]) == True
+    assert increasing_checker.check([1, 2, 3, 3]) == False
+    assert increasing_checker.check([1, 2, 3, 6]) == True
+    assert increasing_checker.check([1, 2, 3, 7]) == False
 
-def test_sample_data_check_all_increasing_safe():
-    assert check_all_increasing_safe([7, 6, 4, 2, 1]) == False
-    assert check_all_increasing_safe([1, 2, 7, 8, 9]) == False
-    assert check_all_increasing_safe([9, 7, 6, 2, 1]) == False
-    assert check_all_increasing_safe([1, 3, 2, 4, 5]) == False
-    assert check_all_increasing_safe([8, 6, 4, 4, 1]) == False
-    assert check_all_increasing_safe([1, 3, 6, 7, 9]) == True
 
-def test_check_all_decreasing_safe():
-    assert check_all_decreasing_safe([5, 3, 2, 1]) == True
-    assert check_all_decreasing_safe([3, 3, 2, 1]) == False
-    assert check_all_decreasing_safe([6, 3, 2, 1]) == True
-    assert check_all_decreasing_safe([7, 3, 2, 1]) == False
+def test_sample_data_increasing_safe_checker_class():
+    increasing_checker = IncreasingSafeChecker()
+    assert increasing_checker.check([7, 6, 4, 2, 1]) == False
+    assert increasing_checker.check([1, 2, 7, 8, 9]) == False
+    assert increasing_checker.check([9, 7, 6, 2, 1]) == False
+    assert increasing_checker.check([1, 3, 2, 4, 5]) == False
+    assert increasing_checker.check([8, 6, 4, 4, 1]) == False
+    assert increasing_checker.check([1, 3, 6, 7, 9]) == True
 
-def test_sample_data_check_all_decreasing_safe():
-    assert check_all_decreasing_safe([7, 6, 4, 2, 1]) == True
-    assert check_all_decreasing_safe([1, 2, 7, 8, 9]) == False
-    assert check_all_decreasing_safe([9, 7, 6, 2, 1]) == False
-    assert check_all_decreasing_safe([1, 3, 2, 4, 5]) == False
-    assert check_all_decreasing_safe([8, 6, 4, 4, 1]) == False
-    assert check_all_decreasing_safe([1, 3, 6, 7, 9]) == False
+def test_decreasing_safe_checker_class():
+    decreasing_checker = DecreasingSafeChecker()
+    assert decreasing_checker.check([5, 3, 2, 1]) == True
+    assert decreasing_checker.check([3, 3, 2, 1]) == False
+    assert decreasing_checker.check([6, 3, 2, 1]) == True
+    assert decreasing_checker.check([7, 3, 2, 1]) == False
 
-def test_red_nosed_reports():
+def test_sample_data_decreasing_safe_checker_class():
+    decreasing_checker = DecreasingSafeChecker()
+    assert decreasing_checker.check([7, 6, 4, 2, 1]) == True
+    assert decreasing_checker.check([1, 2, 7, 8, 9]) == False
+    assert decreasing_checker.check([9, 7, 6, 2, 1]) == False
+    assert decreasing_checker.check([1, 3, 2, 4, 5]) == False
+    assert decreasing_checker.check([8, 6, 4, 4, 1]) == False
+    assert decreasing_checker.check([1, 3, 6, 7, 9]) == False
+
+def test_red_nosed_reports(get_safe_checker):
     sample_data = [
         [1, 2, 3, 5],
         [1, 2, 3, 3],
@@ -50,9 +60,9 @@ def test_red_nosed_reports():
         [6, 3, 2, 1],
         [5, 3, 2, 1]
     ]
-    assert red_nosed_reports(sample_data) == 4
+    assert red_nosed_reports(sample_data, get_safe_checker) == 4
 
-def test_sample_data_red_nosed_reports():
+def test_sample_data_red_nosed_reports(get_safe_checker):
     sample_data = [
         [7, 6, 4, 2, 1],
         [1, 2, 7, 8, 9],
@@ -61,4 +71,4 @@ def test_sample_data_red_nosed_reports():
         [8, 6, 4, 4, 1],
         [1, 3, 6, 7, 9]
     ]
-    assert red_nosed_reports(sample_data) == 2
+    assert red_nosed_reports(sample_data, get_safe_checker) == 2
