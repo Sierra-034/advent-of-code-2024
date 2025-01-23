@@ -1,5 +1,26 @@
 from common import prepare_day02_input_data
 
+class ReportChecker:
+    def __init__(self, successor=None):
+        self._successor = successor
+
+    def check(self, report):
+        if self._successor:
+            return self._successor.check(report)
+        return False
+
+class IncreasingSafeChecker(ReportChecker):
+    def check(self, report):
+        if check_all_increasing_safe(report):
+            return True
+        return super().check(report)
+
+class DecreasingSafeChecker(ReportChecker):
+    def check(self, report):
+        if check_all_decreasing_safe(report):
+            return True
+        return super().check(report)
+
 def report_iterator(report_list: list):
     pointer = 1
     while pointer < len(report_list):
