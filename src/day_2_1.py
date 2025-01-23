@@ -11,15 +11,19 @@ class ReportChecker:
 
 class IncreasingSafeChecker(ReportChecker):
     def check(self, report):
-        if check_all_increasing_safe(report):
-            return True
-        return super().check(report)
+        for left, right in report_iterator(report):
+            safe_diff = right - left
+            if safe_diff <= 0 or safe_diff > 3:
+                return super().check(report)
+        return True
 
 class DecreasingSafeChecker(ReportChecker):
     def check(self, report):
-        if check_all_decreasing_safe(report):
-            return True
-        return super().check(report)
+        for left, right in report_iterator(report):
+            safe_diff = right - left
+            if safe_diff >= 0 or safe_diff < -3:
+                return super().check(report)
+        return True
 
 def report_iterator(report_list: list):
     pointer = 1
