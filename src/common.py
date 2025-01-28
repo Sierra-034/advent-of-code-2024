@@ -34,3 +34,9 @@ def prepare_day03_input_data():
     for line in read_stdin_lines():
         lines.append(line)
     return lines
+
+def prepare_day04_input_data():
+    lines = list()
+    for line in read_stdin_lines():
+        lines.append(line)
+    return lines

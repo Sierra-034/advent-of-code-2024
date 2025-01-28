@@ -1,3 +1,4 @@
+from common import prepare_day04_input_data
 
 XMAS = 'XMAS'
 XMAS_LENGHT = 4
@@ -30,3 +31,10 @@ def search_over(index_i: int, index_j: int, word_search: list[list]):
 
 def is_out_range(next_pos_index: int, delimeter: int) -> bool:
     return next_pos_index < 0 or next_pos_index >= delimeter
+
+def main():
+    word_search_data = prepare_day04_input_data()
+    print(iterate_over(word_search_data))
+
+if __name__ == '__main__':
+    main()
